@@ -22,5 +22,5 @@
       cnt1 += 1
     }
   }
-  (str(cnt1), str(cnt2))
+  (str(cnt1) + sym.star, str(cnt2))
 }

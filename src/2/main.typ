@@ -13,17 +13,22 @@
         cnt1 += i
         cnt2 += i
       } else {
-        for i in range(1, m) {
-          if calc.rem(length, i) == 0 {
-            let parts = s.clusters().chunks(i).map(c => c.join(""))
-            if parts.fold(true, (acc, c) => acc and parts.at(0) == c) {
-              cnt2 += i
-              break
-            }
+        for j in range(1, m + 1).rev() {
+          if calc.rem(length, j) != 0 {
+            continue
+          }
+          let parts = ()
+          for k in range(0, int(length / j)) {
+            parts.push(s.slice(k * j, (k * j) + j))
+          }
+          // let parts = s.clusters().chunks(j).map(c => c.join(""))
+          if parts.fold(true, (acc, c) => acc and parts.at(0) == c) {
+            cnt2 += i
+            break
           }
         }
       }
     }
   }
-  (str(cnt1), str(cnt2))
+  (str(cnt1) + sym.star, str(cnt2) + sym.star)
 }
